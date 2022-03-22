@@ -1,0 +1,12 @@
+{
+  "name": "start-close-process",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index"
+  },
+  "author": "wanghongliang <401765060@qq.com>",
+  "license": "ISC",
+  "dependencies": {}
+}
