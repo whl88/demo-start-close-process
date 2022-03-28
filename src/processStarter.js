@@ -46,7 +46,12 @@ function kill(target) {
  * @returns 进程信息{name:'xxxx',pid:xxxx}
  */
 function find(target){
-  let cmd = process.platform === 'win32' ? 'tasklist /v' : 'ps aux'
+  let cmd = null
+  if(typeof target === 'string'){
+    cmd = process.platform === 'win32' ? `tasklist /v /fi "IMAGENAME eq ${target}"` : 'ps aux'
+  }else if(typeof target === 'number'){
+    cmd = process.platform === 'win32' ? `tasklist /v /fi "PID eq ${target}"` : 'ps aux'
+  }
 
   return new Promise((resolve,reject)=>{
     exec(cmd,function (err, stdout) {

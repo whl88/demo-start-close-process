@@ -11,6 +11,9 @@ const { start,kill,find } = require('./processStarter');
     console.log('e',e)
 }) */
 
-find('KwMusic.exe').then((p)=>{
+/* find('KwMusic.exe').then((p)=>{
+    console.log(p)
+}) */
+find(8108).then((p)=>{
     console.log(p)
 })
