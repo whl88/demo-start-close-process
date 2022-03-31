@@ -5,7 +5,7 @@ const { start,kill,find } = require('./processStarter');
 }) */
 
 
-kill('chrome.exe').then(()=>{
+kill('KwMusic.exe').then(()=>{
 
 }).catch(e=>{
     console.log('e',e)

@@ -8,15 +8,12 @@ const fs = require('fs')
  * @returns 启动成功将resovle进程信息{name:'xxxx',pid:xxxx}；启动失败reject失败原因
  */
 function start(softPath){
-  return new Promise((resolve,reject)=>{
     if(!fs.existsSync(softPath)){
       reject('file is not exist')
       return 
     }
     spawn(softPath)
-    const procs = find(parse(softPath).base)
-    resolve(procs)
-  })
+    return find(parse(softPath).base)
 }
 
 /**
@@ -24,18 +21,12 @@ function start(softPath){
  * @param {string | Number} target pid或进程名
  * @returns 关闭成功将resovle；关闭失败reject失败原因
  */
-function kill(target) {
-  return new Promise(async (resolve,reject)=>{
-    const procs = await find(target)
-    procs.forEach((p)=>{
-      try{
-        process.kill(p.pid)
-        resolve()
-      }catch(err){
-        reject(err)
-      }
-    })
+async function kill(target) {
+  const procs = await find(target)
+  procs.forEach((p)=>{
+    process.kill(p.pid)
   })
+  return 
 }
 
 /**
