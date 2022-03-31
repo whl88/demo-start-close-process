@@ -9,8 +9,7 @@ const fs = require('fs')
  */
 function start(softPath){
     if(!fs.existsSync(softPath)){
-      reject('file is not exist')
-      return 
+      throw new Error(`file ${softPath} is not exist`)
     }
     spawn(softPath)
     return find(parse(softPath).base)

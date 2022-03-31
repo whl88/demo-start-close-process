@@ -1,16 +1,16 @@
 const { start,kill,find } = require('./processStarter');
 
-/* start('D:\\tool\\KWMusic\\KwMusic.exe').then((a)=>{
+start('D:\\tool\\KWMusic\\KwMusic.exe').then((a)=>{
     console.log(a)
-}) */
+})
 
 
-kill('KwMusic.exe').then(()=>{
+/* kill('KwMusic.exe').then(()=>{
 
 }).catch(e=>{
     console.log('e',e)
 })
-
+ */
 /* find('KwMusic.exe').then((p)=>{
     console.log(p)
 }) */
