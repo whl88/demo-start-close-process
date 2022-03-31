@@ -5,15 +5,15 @@ const { start,kill,find } = require('./processStarter');
 }) */
 
 
-/* kill(3152).then(()=>{
+kill('chrome.exe').then(()=>{
 
 }).catch(e=>{
     console.log('e',e)
-}) */
+})
 
 /* find('KwMusic.exe').then((p)=>{
     console.log(p)
 }) */
-find(8108).then((p)=>{
+/* find(8108).then((p)=>{
     console.log(p)
-})
+}) */

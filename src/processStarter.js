@@ -14,8 +14,8 @@ function start(softPath){
       return 
     }
     spawn(softPath)
-    const procInfo = find(parse(softPath).base)
-    resolve(procInfo)
+    const procs = find(parse(softPath).base)
+    resolve(procs)
   })
 }
 
@@ -25,18 +25,16 @@ function start(softPath){
  * @returns 关闭成功将resovle；关闭失败reject失败原因
  */
 function kill(target) {
-  return new Promise((resolve,reject)=>{
-    const procInfo = find(target)
-    if(procInfo){
+  return new Promise(async (resolve,reject)=>{
+    const procs = await find(target)
+    procs.forEach((p)=>{
       try{
-        process.kill(procInfo.pid)
+        process.kill(p.pid)
         resolve()
       }catch(err){
         reject(err)
       }
-    }else{
-      reject(`process ${target} is not exist`)
-    }
+    })
   })
 }
 
@@ -59,18 +57,18 @@ function find(target){
         reject(err)
       }
 
-      const proc = stdout.split('\n').map((line) => {
+      const procs = stdout.split('\n').map((line) => {
         const processMessage = line.trim().split(/\s+/)
         return {
           name:processMessage[0] ,
           pid:Number.parseInt(processMessage[1]),
         }
-      }).find((p)=>{
+      }).filter((p)=>{
         return (typeof target === 'string' && p.name === target) || 
                 (typeof target === 'number' && p.pid === target)
       })
 
-      resolve(proc)
+      resolve(procs)
     })
   })
 }
